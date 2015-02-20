@@ -106,11 +106,17 @@ namespace PerfIt
                         {
                             try
                             {
-                                var ctx = (PerfItContext)response.RequestMessage.Properties[Constants.PerfItKey];
-
-                                foreach (var counter in ctx.CountersToRun)
+                                if (response != null && response.RequestMessage != null)
                                 {
-                                    _counterContexts[counter].Handler.OnRequestEnding(response);
+                                    var ctx = (PerfItContext) response.RequestMessage.Properties[Constants.PerfItKey];
+
+                                    if (ctx != null)
+                                    {
+                                        foreach (var counter in ctx.CountersToRun)
+                                        {
+                                            _counterContexts[counter].Handler.OnRequestEnding(response);
+                                        }
+                                    }
                                 }
                             }
                             catch (Exception e)
