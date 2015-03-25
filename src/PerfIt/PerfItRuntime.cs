@@ -171,7 +171,7 @@ namespace PerfIt
                                            .Where(t => typeof(ApiController).IsAssignableFrom(t) &&
                                                         !t.IsAbstract).ToArray();
 
-            Trace.TraceInformation("Found '{0}' controllers", apiControllers.Length);
+            Trace.TraceInformation("PerfIt Found '{0}' controllers", apiControllers.Length);
 
             foreach (var apiController in apiControllers)
             {
@@ -192,7 +192,7 @@ namespace PerfIt
                         }
 
 						attributes.Add(attr);
-                        Trace.TraceInformation("Added '{0}' to the list", attr.Counters);
+                        Trace.TraceInformation("PerfIt Added '{0}' to the list", string.Join(",", attr.Counters));
                         
                     }
                 }
